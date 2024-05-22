@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct User {
+struct User: Decodable {
     
     // MARK: - Types
     enum CodingKeys: String, CodingKey {
@@ -39,4 +39,9 @@ struct User {
             )
         }
     }
+    init(id: String, username: String, image: UIImage) {
+            self.id = id
+            self.username = username
+            self.image = image
+        }
 }

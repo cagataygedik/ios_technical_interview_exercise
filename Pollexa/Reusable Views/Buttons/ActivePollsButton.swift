@@ -9,8 +9,8 @@ import UIKit
 import SnapKit
 
 final class ActivePollsButton: UIButton {
-    private let customTitleLabel = TitleLabel()
-    private let secondaryTitleLabel = SecondaryTitleLabel()
+    private let customTitleLabel = TitleLabel(size: 20, color: .white, weight: .semibold, fontName: "SF Pro", alignment: .left)
+    private let secondaryTitleLabel = TitleLabel(size: 16, color: .white.withAlphaComponent(0.7), weight: .semibold, fontName: "SF Pro", alignment: .left)
     private let stackView = UIStackView()
     private let arrowImageView = UIImageView()
     
