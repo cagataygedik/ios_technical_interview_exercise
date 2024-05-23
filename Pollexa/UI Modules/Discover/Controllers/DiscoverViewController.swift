@@ -12,44 +12,21 @@ final class DiscoverViewController: UIViewController {
     private let postProvider = PostProvider.shared
     private let profileButtonView = CircularProfileImageView()
     private let activePollsButton = ActivePollsButton()
-    private let pollTableView = PollTableView()
+    private let pollCardView = PollCardView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
         addActivePollsButton()
-        setupPollTableView()
+        setupPollCardView()
         fetchPosts()
-    }
-    
-    private func setupPollTableView() {
-        view.addSubview(pollTableView)
-        pollTableView.snp.makeConstraints { make in
-            make.top.equalTo(activePollsButton.snp.bottom).offset(20)
-            make.leading.trailing.bottom.equalToSuperview().inset(16)
-        }
-        pollTableView.layer.cornerRadius = 25
-        pollTableView.clipsToBounds = true
-        pollTableView.backgroundColor = .white
     }
     
     private func fetchPosts() {
         postProvider.fetchAll { result in
             switch result {
             case .success(let posts):
-                self.pollTableView.viewModels = posts.map { post in
-                    PollViewModel(
-                        userImage: post.user.image,
-                        username: post.user.username,
-                        timestamp: DateFormatter.localizedString(from: post.createdAt, dateStyle: .short, timeStyle: .short),
-                        content: post.content,
-                        optionOneImage: post.options[0].image,
-                        optionTwoImage: post.options[1].image,
-                        voteCount: "\(Int.random(in: 1...100)) Total Votes" // Example vote count
-                    )
-                }
-                self.pollTableView.reloadData()
-                
+                self.pollCardView.configure(with: posts) // Configure PollCardView with posts
             case .failure(let error):
                 debugPrint(error.localizedDescription)
             }
@@ -69,13 +46,21 @@ final class DiscoverViewController: UIViewController {
         print("Go to active polls")
     }
     
+    private func setupPollCardView() {
+        view.addSubview(pollCardView)
+        pollCardView.snp.makeConstraints { make in
+            make.top.equalTo(activePollsButton.snp.bottom).offset(20)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
+    }
+    
     private func configureViewController() {
         view.backgroundColor = UIColor(named: "BackgroundColor")
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Discover"
         navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
-        
         addNavigationItems()
     }
     

@@ -25,12 +25,10 @@ final class ContainerViewOne: UIView {
     }
     
     private func setupView() {
-        // Add subviews
         addSubview(profileImageView)
         addSubview(usernameLabel)
         addSubview(timestampLabel)
         
-        // Setup constraints using SnapKit
         profileImageView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
             make.centerY.equalToSuperview()
@@ -51,7 +49,6 @@ final class ContainerViewOne: UIView {
         }
     }
     
-    // Configure the view with data
     func configure(with user: User, timestamp: String) {
         profileImageView.setImage(user.image)
         usernameLabel.text = user.username

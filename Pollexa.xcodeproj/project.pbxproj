@@ -24,9 +24,9 @@
 		A20E02462BFE3E1B006DA7C5 /* SecondaryTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20E02452BFE3E1B006DA7C5 /* SecondaryTitleLabel.swift */; };
 		A27F86DE2BFE84BD00EF4D3D /* ContainerViewOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27F86DD2BFE84BD00EF4D3D /* ContainerViewOne.swift */; };
 		A27F86E22BFE85EB00EF4D3D /* ContainerViewTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27F86E12BFE85EB00EF4D3D /* ContainerViewTwo.swift */; };
-		A27F86E62BFE8AB800EF4D3D /* PollTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27F86E52BFE8AB800EF4D3D /* PollTableViewCell.swift */; };
-		A27F86EE2BFE938F00EF4D3D /* PollViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27F86ED2BFE938F00EF4D3D /* PollViewModel.swift */; };
-		A27F86F02BFE93E900EF4D3D /* PollTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27F86EF2BFE93E900EF4D3D /* PollTableView.swift */; };
+		A286522F2BFF565100975543 /* PollCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A286522E2BFF565100975543 /* PollCardViewModel.swift */; };
+		A28652312BFF567C00975543 /* PollCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28652302BFF567C00975543 /* PollCollectionViewCell.swift */; };
+		A28652332BFF56B100975543 /* PollCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28652322BFF56B100975543 /* PollCardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,9 +48,9 @@
 		A20E02452BFE3E1B006DA7C5 /* SecondaryTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryTitleLabel.swift; sourceTree = "<group>"; };
 		A27F86DD2BFE84BD00EF4D3D /* ContainerViewOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewOne.swift; sourceTree = "<group>"; };
 		A27F86E12BFE85EB00EF4D3D /* ContainerViewTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewTwo.swift; sourceTree = "<group>"; };
-		A27F86E52BFE8AB800EF4D3D /* PollTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollTableViewCell.swift; sourceTree = "<group>"; };
-		A27F86ED2BFE938F00EF4D3D /* PollViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollViewModel.swift; sourceTree = "<group>"; };
-		A27F86EF2BFE93E900EF4D3D /* PollTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollTableView.swift; sourceTree = "<group>"; };
+		A286522E2BFF565100975543 /* PollCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollCardViewModel.swift; sourceTree = "<group>"; };
+		A28652302BFF567C00975543 /* PollCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollCollectionViewCell.swift; sourceTree = "<group>"; };
+		A28652322BFF56B100975543 /* PollCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,7 +196,7 @@
 		A27F86DB2BFE825900EF4D3D /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				A27F86ED2BFE938F00EF4D3D /* PollViewModel.swift */,
+				A286522E2BFF565100975543 /* PollCardViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -206,7 +206,7 @@
 			children = (
 				A27F86E42BFE8AA100EF4D3D /* Cell */,
 				A27F86E32BFE8A9600EF4D3D /* ContainerViews */,
-				A27F86EF2BFE93E900EF4D3D /* PollTableView.swift */,
+				A28652322BFF56B100975543 /* PollCardView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -223,7 +223,7 @@
 		A27F86E42BFE8AA100EF4D3D /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				A27F86E52BFE8AB800EF4D3D /* PollTableViewCell.swift */,
+				A28652302BFF567C00975543 /* PollCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -313,14 +313,14 @@
 				A27F86DE2BFE84BD00EF4D3D /* ContainerViewOne.swift in Sources */,
 				6E3A361C2BF25F2900ECE78C /* PostOption.swift in Sources */,
 				6E3A36042BF2563400ECE78C /* SceneDelegate.swift in Sources */,
-				A27F86F02BFE93E900EF4D3D /* PollTableView.swift in Sources */,
+				A28652332BFF56B100975543 /* PollCardView.swift in Sources */,
 				A20E02462BFE3E1B006DA7C5 /* SecondaryTitleLabel.swift in Sources */,
 				A27F86E22BFE85EB00EF4D3D /* ContainerViewTwo.swift in Sources */,
-				A27F86E62BFE8AB800EF4D3D /* PollTableViewCell.swift in Sources */,
-				A27F86EE2BFE938F00EF4D3D /* PollViewModel.swift in Sources */,
+				A28652312BFF567C00975543 /* PollCollectionViewCell.swift in Sources */,
 				A20E02412BFE3D47006DA7C5 /* ActivePollsButton.swift in Sources */,
 				6E3A36182BF25DA800ECE78C /* Post.swift in Sources */,
 				A20E023B2BFE382D006DA7C5 /* CircularProfileImageView.swift in Sources */,
+				A286522F2BFF565100975543 /* PollCardViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
