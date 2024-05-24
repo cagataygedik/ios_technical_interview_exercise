@@ -11,13 +11,11 @@ import SnapKit
 final class DiscoverViewController: UIViewController {
     private let postProvider = PostProvider.shared
     private let profileButtonView = CircularProfileImageView()
-    private let activePollsButton = ActivePollsButton()
     private let pollCardView = PollCardView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
-        addActivePollsButton()
         setupPollCardView()
         fetchPosts()
     }
@@ -33,37 +31,21 @@ final class DiscoverViewController: UIViewController {
         }
     }
     
-    private func addActivePollsButton() {
-        activePollsButton.addTarget(self, action: #selector(activePollsButtonTapped), for: .touchUpInside)
-        view.addSubview(activePollsButton)
-        activePollsButton.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
-            make.leading.trailing.equalToSuperview().inset(20)
-        }
-    }
-    
-    @objc private func activePollsButtonTapped() {
-        print("Go to active polls")
-    }
-    
     private func setupPollCardView() {
         view.addSubview(pollCardView)
         pollCardView.snp.makeConstraints { make in
-            make.top.equalTo(activePollsButton.snp.bottom).offset(20)
-            make.leading.trailing.equalToSuperview()
-            make.bottom.equalToSuperview()
+            make.edges.equalToSuperview()
         }
     }
     
     private func configureViewController() {
         view.backgroundColor = UIColor(named: "BackgroundColor")
-        navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Discover"
+        navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         addNavigationItems()
     }
-    
     
     private func addNavigationItems() {
         addPlusButton()

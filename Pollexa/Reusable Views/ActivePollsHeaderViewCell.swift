@@ -1,14 +1,15 @@
 //
-//  ActivePollsButton.swift
+//  ActivePollsHeaderView.swift
 //  Pollexa
 //
-//  Created by Celil Çağatay Gedik on 22.05.2024.
+//  Created by Celil Çağatay Gedik on 23.05.2024.
 //
 
 import UIKit
-import SnapKit
 
-final class ActivePollsButton: UIButton {
+final class ActivePollsHeaderViewCell: UICollectionReusableView {
+    static let reuseID = "ActivePollsHeaderViewCell"
+    
     private let customTitleLabel = TitleLabel(size: 20, color: .white, weight: .semibold, fontName: "SF Pro", alignment: .left)
     private let secondaryTitleLabel = TitleLabel(size: 16, color: .white.withAlphaComponent(0.7), weight: .semibold, fontName: "SF Pro", alignment: .left)
     private let stackView = UIStackView()
@@ -17,6 +18,7 @@ final class ActivePollsButton: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
+        setupConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -27,8 +29,7 @@ final class ActivePollsButton: UIButton {
         configureStackView()
         configureLabels()
         configureArrowImageView()
-        configureButtonAppearance()
-        configureButton()
+        configureCellAppearance()
     }
     
     private func configureStackView() {
@@ -38,10 +39,6 @@ final class ActivePollsButton: UIButton {
         stackView.addArrangedSubview(customTitleLabel)
         stackView.addArrangedSubview(secondaryTitleLabel)
         addSubview(stackView)
-        stackView.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(16)
-            make.centerY.equalToSuperview()
-        }
     }
     
     private func configureLabels() {
@@ -57,23 +54,25 @@ final class ActivePollsButton: UIButton {
         arrowImageView.layer.cornerRadius = 4
         arrowImageView.layer.masksToBounds = true
         addSubview(arrowImageView)
-        arrowImageView.snp.makeConstraints { make in
-            make.width.equalTo(33)
-            make.height.equalTo(33)
-            make.trailing.equalToSuperview().inset(16)
-            make.centerY.equalToSuperview()
-        }
     }
     
-    private func configureButtonAppearance() {
+    private func configureCellAppearance() {
         backgroundColor = UIColor(named: "AccentColor")
         layer.cornerRadius = 20
     }
     
-    private func configureButton() {
-        self.snp.makeConstraints { make in
-//            make.width.equalTo(388)
-            make.height.equalTo(78)
+    private func setupConstraints() {
+        stackView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(16)
+            make.centerY.equalToSuperview()
+        }
+        
+        arrowImageView.snp.makeConstraints { make in
+            make.width.equalTo(30)
+            make.height.equalTo(30)
+            make.trailing.equalToSuperview().inset(16)
+            make.centerY.equalToSuperview()
         }
     }
 }
+
