@@ -208,10 +208,10 @@ final class ContainerViewTwo: UIView {
     
     private func highlightSelectedOption(option: Int) {
         if option == 1 {
-            optionOneImageView.layer.borderColor = UIColor.blue.cgColor
+            optionOneImageView.layer.borderColor = UIColor(named: "AccentColor")?.cgColor
             optionTwoImageView.layer.borderColor = UIColor.lightGray.cgColor
         } else {
-            optionTwoImageView.layer.borderColor = UIColor.blue.cgColor
+            optionTwoImageView.layer.borderColor = UIColor(named: "AccentColor")?.cgColor
             optionOneImageView.layer.borderColor = UIColor.lightGray.cgColor
         }
     }

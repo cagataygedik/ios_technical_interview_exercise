@@ -20,6 +20,8 @@ final class PollCardView: UIView {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(PollCollectionViewCell.self, forCellWithReuseIdentifier: PollCollectionViewCell.reuseID)
         collectionView.register(ActivePollsHeaderViewCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ActivePollsHeaderViewCell.reuseID)
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
         return collectionView
     }()
     
@@ -66,7 +68,7 @@ extension PollCardView: UICollectionViewDelegate, UICollectionViewDataSource, UI
         cell.configure(with: viewModel)
         return cell
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ActivePollsHeaderViewCell.reuseID, for: indexPath) as! ActivePollsHeaderViewCell

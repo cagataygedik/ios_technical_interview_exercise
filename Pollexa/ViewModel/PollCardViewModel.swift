@@ -7,16 +7,13 @@
 
 import UIKit
 
-class PollCardViewModel {
-    
-    // MARK: - Properties
+final class PollCardViewModel {
     private let post: Post
     private let dateFormatter: DateFormatter
     var optionOneVotes: Int
     var optionTwoVotes: Int
     var userHasVoted: Bool
     
-    // MARK: - Init
     init(post: Post) {
         self.post = post
         self.dateFormatter = DateFormatter()
@@ -27,7 +24,6 @@ class PollCardViewModel {
         self.userHasVoted = false
     }
     
-    // MARK: - Methods
     var user: User {
         return post.user
     }
