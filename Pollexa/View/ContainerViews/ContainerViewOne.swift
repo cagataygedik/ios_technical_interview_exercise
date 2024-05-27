@@ -28,6 +28,9 @@ final class ContainerViewOne: UIView {
         addSubview(profileImageView)
         addSubview(usernameLabel)
         addSubview(timestampLabel)
+        profileImageView.translatesAutoresizingMaskIntoConstraints = false
+        usernameLabel.translatesAutoresizingMaskIntoConstraints = false
+        timestampLabel.translatesAutoresizingMaskIntoConstraints = false
         
         profileImageView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)

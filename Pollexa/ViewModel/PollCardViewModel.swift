@@ -52,7 +52,7 @@ class PollCardViewModel {
     
     var voteCount: String {
         // Assuming vote count is not provided, so returning a static text
-        return "6 Total Votes"
+        return "0 Total Votes"
     }
 }
 
