@@ -16,6 +16,8 @@ final class ContainerViewTwo: UIView {
     private let optionTwoImageView = UIImageView()
     private let optionOneLikeButton = UIButton()
     private let optionTwoLikeButton = UIButton()
+    private let optionOnePercentageLabel = TitleLabel(size: 15, color: .white, weight: .medium, fontName: "SF Pro")
+    private let optionTwoPercentageLabel = TitleLabel(size: 15, color: .white, weight: .medium, fontName: "SF Pro")
     private let voteCountLabel = TitleLabel(size: 13, color: .lightGray, weight: .regular, fontName: "SF Pro", alignment: .left)
     private let optionsStackView = UIStackView()
     
@@ -38,6 +40,7 @@ final class ContainerViewTwo: UIView {
     private func setupView() {
         setupImageViews()
         setupLikeButtons()
+        setupPercentageLabels()
         setupOptionsStackView()
         addSubviews()
         setupConstraints()
@@ -58,16 +61,24 @@ final class ContainerViewTwo: UIView {
     }
     
     private func setupLikeButtons() {
-            [optionOneLikeButton, optionTwoLikeButton].forEach {
-                $0.setImage(UIImage(systemName: "hand.thumbsup.fill"), for: .normal)
-                $0.tintColor = UIColor(named: "AccentColor")
-                $0.backgroundColor = .white
-                $0.layer.cornerRadius = 15
-                $0.layer.masksToBounds = true
-                $0.addTarget(self, action: #selector(didTapLikeButton(_:)), for: .touchUpInside)
-            }
+        [optionOneLikeButton, optionTwoLikeButton].forEach {
+            $0.setImage(UIImage(systemName: "hand.thumbsup.fill"), for: .normal)
+            $0.tintColor = UIColor(named: "AccentColor")
+            $0.backgroundColor = .white
+            $0.layer.cornerRadius = 15
+            $0.layer.masksToBounds = true
+            $0.addTarget(self, action: #selector(didTapLikeButton(_:)), for: .touchUpInside)
         }
-
+    }
+    
+    private func setupPercentageLabels() {
+        [optionOnePercentageLabel, optionTwoPercentageLabel].forEach {
+            $0.isHidden = true
+            $0.lineBreakMode = .byClipping
+            $0.adjustsFontSizeToFitWidth = true
+            $0.minimumScaleFactor = 0.1
+        }
+    }
     
     private func setupOptionsStackView() {
         optionsStackView.axis = .horizontal
@@ -84,6 +95,8 @@ final class ContainerViewTwo: UIView {
         addSubview(voteCountLabel)
         optionOneImageView.addSubview(optionOneLikeButton)
         optionTwoImageView.addSubview(optionTwoLikeButton)
+        optionOneImageView.addSubview(optionOnePercentageLabel)
+        optionTwoImageView.addSubview(optionTwoPercentageLabel)
     }
     
     private func setupConstraints() {
@@ -127,6 +140,22 @@ final class ContainerViewTwo: UIView {
             make.bottom.equalToSuperview().offset(-10)
             make.width.height.equalTo(30)
         }
+        
+        optionOnePercentageLabel.translatesAutoresizingMaskIntoConstraints = false
+        optionOnePercentageLabel.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().offset(-5)
+            make.bottom.equalToSuperview().offset(-5)
+            make.width.equalTo(36)
+            make.height.equalTo(30)
+        }
+        
+        optionTwoPercentageLabel.translatesAutoresizingMaskIntoConstraints = false
+        optionTwoPercentageLabel.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().offset(-5)
+            make.bottom.equalToSuperview().offset(-5)
+            make.width.equalTo(36)
+            make.height.equalTo(30)
+        }
     }
     
     private func addGestureRecognizers() {
@@ -165,6 +194,15 @@ final class ContainerViewTwo: UIView {
         let optionOnePercentage = totalVotes > 0 ? (optionOneVotes * 100 / totalVotes) : 0
         let optionTwoPercentage = totalVotes > 0 ? (optionTwoVotes * 100 / totalVotes) : 0
         voteCountLabel.text = "\(totalVotes) Total Votes"
+        
+        optionOnePercentageLabel.text = "\(optionOnePercentage)%"
+        optionTwoPercentageLabel.text = "\(optionTwoPercentage)%"
+        
+        optionOneLikeButton.isHidden = true
+        optionTwoLikeButton.isHidden = true
+        
+        optionOnePercentageLabel.isHidden = false
+        optionTwoPercentageLabel.isHidden = false
     }
     
     private func highlightSelectedOption(option: Int) {

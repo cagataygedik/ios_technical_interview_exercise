@@ -8,8 +8,7 @@
 import UIKit
 
 final class TitleLabel: UILabel {
-    
-    // Custom initializer with optional weight and alignment
+
     init(size: CGFloat, color: UIColor, weight: UIFont.Weight = .regular, fontName: String? = nil, alignment: NSTextAlignment = .left) {
         super.init(frame: .zero)
         configure(size: size, color: color, weight: weight, fontName: fontName, alignment: alignment)
