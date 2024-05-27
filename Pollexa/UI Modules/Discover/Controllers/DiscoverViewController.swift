@@ -24,7 +24,7 @@ final class DiscoverViewController: UIViewController {
         postProvider.fetchAll { result in
             switch result {
             case .success(let posts):
-                self.pollCardView.configure(with: posts) // Configure PollCardView with posts
+                self.pollCardView.configure(with: posts)
             case .failure(let error):
                 debugPrint(error.localizedDescription)
             }

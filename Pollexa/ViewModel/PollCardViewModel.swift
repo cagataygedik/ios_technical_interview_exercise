@@ -12,6 +12,9 @@ class PollCardViewModel {
     // MARK: - Properties
     private let post: Post
     private let dateFormatter: DateFormatter
+    var optionOneVotes: Int
+    var optionTwoVotes: Int
+    var userHasVoted: Bool
     
     // MARK: - Init
     init(post: Post) {
@@ -19,6 +22,9 @@ class PollCardViewModel {
         self.dateFormatter = DateFormatter()
         self.dateFormatter.dateStyle = .medium
         self.dateFormatter.timeStyle = .none
+        self.optionOneVotes = 0
+        self.optionTwoVotes = 0
+        self.userHasVoted = false
     }
     
     // MARK: - Methods
@@ -50,9 +56,22 @@ class PollCardViewModel {
         return post.options[1].image
     }
     
+    var totalVotes: Int {
+        return optionOneVotes + optionTwoVotes
+    }
+    
     var voteCount: String {
-        // Assuming vote count is not provided, so returning a static text
-        return "0 Total Votes"
+        return "\(totalVotes) Total Votes"
+    }
+    
+    var optionOnePercentage: String {
+        let percentage = totalVotes > 0 ? (optionOneVotes * 100 / totalVotes) : 0
+        return "\(percentage)%"
+    }
+    
+    var optionTwoPercentage: String {
+        let percentage = totalVotes > 0 ? (optionTwoVotes * 100 / totalVotes) : 0
+        return "\(percentage)%"
     }
 }
 

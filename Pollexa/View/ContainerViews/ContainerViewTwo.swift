@@ -21,12 +21,7 @@ final class ContainerViewTwo: UIView {
     private let voteCountLabel = TitleLabel(size: 13, color: .lightGray, weight: .regular, fontName: "SF Pro", alignment: .left)
     private let optionsStackView = UIStackView()
     
-    private var optionOneVotes = 0
-    private var optionTwoVotes = 0
-    private var totalVotes: Int {
-        return optionOneVotes + optionTwoVotes
-    }
-    private var userHasVoted = false
+    private var viewModel: PollCardViewModel?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -117,7 +112,6 @@ final class ContainerViewTwo: UIView {
             make.top.equalTo(questionLabel.snp.bottom).offset(16)
             make.leading.trailing.equalToSuperview().inset(16)
             make.height.equalTo(129)
-            make.width.equalTo(348)
         }
         
         voteCountLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -175,34 +169,41 @@ final class ContainerViewTwo: UIView {
     }
     
     @objc private func didTapOptionOne() {
-        guard !userHasVoted else { return }
-        optionOneVotes += 1
-        userHasVoted = true
+        guard let viewModel = viewModel, !viewModel.userHasVoted else { return }
+        viewModel.optionOneVotes += 1
+        viewModel.userHasVoted = true
         updateVoteCount()
         highlightSelectedOption(option: 1)
     }
     
     @objc private func didTapOptionTwo() {
-        guard !userHasVoted else { return }
-        optionTwoVotes += 1
-        userHasVoted = true
+        guard let viewModel = viewModel, !viewModel.userHasVoted else { return }
+        viewModel.optionTwoVotes += 1
+        viewModel.userHasVoted = true
         updateVoteCount()
         highlightSelectedOption(option: 2)
     }
     
     private func updateVoteCount() {
-        let optionOnePercentage = totalVotes > 0 ? (optionOneVotes * 100 / totalVotes) : 0
-        let optionTwoPercentage = totalVotes > 0 ? (optionTwoVotes * 100 / totalVotes) : 0
-        voteCountLabel.text = "\(totalVotes) Total Votes"
+        guard let viewModel = viewModel else { return }
+        voteCountLabel.text = viewModel.voteCount
         
-        optionOnePercentageLabel.text = "\(optionOnePercentage)%"
-        optionTwoPercentageLabel.text = "\(optionTwoPercentage)%"
+        optionOnePercentageLabel.text = viewModel.optionOnePercentage
+        optionTwoPercentageLabel.text = viewModel.optionTwoPercentage
         
-        optionOneLikeButton.isHidden = true
-        optionTwoLikeButton.isHidden = true
-        
-        optionOnePercentageLabel.isHidden = false
-        optionTwoPercentageLabel.isHidden = false
+        if viewModel.userHasVoted {
+            optionOneLikeButton.isHidden = true
+            optionTwoLikeButton.isHidden = true
+            
+            optionOnePercentageLabel.isHidden = false
+            optionTwoPercentageLabel.isHidden = false
+        } else {
+            optionOneLikeButton.isHidden = false
+            optionTwoLikeButton.isHidden = false
+            
+            optionOnePercentageLabel.isHidden = true
+            optionTwoPercentageLabel.isHidden = true
+        }
     }
     
     private func highlightSelectedOption(option: Int) {
@@ -215,11 +216,13 @@ final class ContainerViewTwo: UIView {
         }
     }
     
-    func configure(with timestamp: String, content: String, optionOneImage: UIImage, optionTwoImage: UIImage, voteCount: String) {
-        timestampLabel.text = timestamp
-        questionLabel.text = content
-        optionOneImageView.image = optionOneImage
-        optionTwoImageView.image = optionTwoImage
-        voteCountLabel.text = voteCount
+    func configure(with viewModel: PollCardViewModel) {
+        self.viewModel = viewModel
+        timestampLabel.text = viewModel.createdAt
+        questionLabel.text = viewModel.content
+        optionOneImageView.image = viewModel.optionOneImage
+        optionTwoImageView.image = viewModel.optionTwoImage
+        voteCountLabel.text = viewModel.voteCount
+        updateVoteCount()
     }
 }

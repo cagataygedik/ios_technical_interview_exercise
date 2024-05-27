@@ -57,13 +57,7 @@ final class PollCollectionViewCell: UICollectionViewCell {
     
     func configure(with viewModel: PollCardViewModel) {
         containerViewOne.configure(with: viewModel.user, timestamp: viewModel.createdAt)
-        containerViewTwo.configure(
-            with: viewModel.createdAt,
-            content: viewModel.content,
-            optionOneImage: viewModel.optionOneImage,
-            optionTwoImage: viewModel.optionTwoImage,
-            voteCount: viewModel.voteCount
-        )
+        containerViewTwo.configure(with: viewModel)
     }
 }
 
